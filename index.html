@@ -25,7 +25,7 @@
     };
     window.addResult({
         type: "Script",
-        name: "nonStrictTopLevelArrowFunctionThis",
+        name: "non-strict-top-level-arrow-function-this",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -39,7 +39,7 @@
     };
     window.addResult({
         type: "Script",
-        name: "nonStrictTopLevelFunctionThis",
+        name: "non-strict-top-level-function-this",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -50,7 +50,7 @@
     "use strict";
     window.addResult({
         type: "Script",
-        name: "non-strict-this-in-global-env",
+        name: "strict-this-in-global-env",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -64,7 +64,7 @@
     };
     window.addResult({
         type: "Script",
-        name: "strictTopLevelArrowFunctionThis",
+        name: "strict-top-level-arrow-function-this",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -78,7 +78,7 @@
     };
     window.addResult({
         type: "Script",
-        name: "strictTopLevelFunctionThis",
+        name: "strict-top-level-function-this",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -89,7 +89,7 @@
 <script type="module">
     window.addResult({
         type: "Module",
-        name: "non-strict-this-in-global-env",
+        name: "this-in-module-env",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -102,7 +102,7 @@
     };
     window.addResult({
         type: "Module",
-        name: "strictTopLevelArrowFunctionThis",
+        name: "top-level-arrow-function-this-in-module-env",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -116,7 +116,7 @@
     };
     window.addResult({
         type: "Module",
-        name: "strictTopLevelFunctionThis",
+        name: "top-level-function-this-in-module-env",
         isStrict: function() {
             return this;
         }() === undefined,
