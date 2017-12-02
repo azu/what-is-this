@@ -2,7 +2,39 @@
 
 What value is `this` in Strict, Script, or Module?
 
+## Comparison Table
+
 Open <https://azu.github.io/what-is-this/>
+
+## :memo: Specification
+
+- Set `[[ThisValue]]`
+    - https://tc39.github.io/ecma262/#sec-evaluatecall
+    - https://tc39.github.io/ecma262/#sec-call
+    - https://tc39.github.io/ecma262/#sec-ecmascript-function-objects-call-thisargument-argumentslist
+    - https://tc39.github.io/ecma262/#sec-ordinarycallbindthis
+- Lookup `[[ThisValue]]`
+    - https://tc39.github.io/ecma262/#sec-getthisenvironment 
+
+### Script(Global) Environment
+
+- `[[ThisValue]]`: global
+
+### Module Environment
+
+- `[[ThisValue]]`: undefiled
+
+### Function call
+
+- Depended on call context
+
+### Arrow Function call
+
+- Arrow Function don't bind `[[ThisValue]]`
+- Depended on enclosing environment
+- https://tc39.github.io/ecma262/#sec-ordinarycallbindthis
+- https://tc39.github.io/ecma262/#sec-arrow-function-definitions-runtime-semantics-evaluation
+- https://esdiscuss.org/topic/clarification-regarding-top-level-arrow-functions-and-this-arguments
 
 ## Changelog
 
