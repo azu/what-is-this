@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What is `this`?</title>
+    <link rel="stylesheet" href="./table.css"/>
+    <script src="./table.js"></script>
+</head>
+<body>
+<script>
+    // non strict
+    window.addResult({
+        type: "Script",
+        name: "non-strict-this-in-global-env",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: this
+    });// => global
+</script>
+<script>
+    // non strict
+    const nonStrictTopLevelArrowFunctionThis = () => {
+        return this;
+    };
+    window.addResult({
+        type: "Script",
+        name: "nonStrictTopLevelArrowFunctionThis",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: nonStrictTopLevelArrowFunctionThis()
+    });// => global
+</script>
+<script>
+    // non strict
+    const nonStrictTopLevelFunctionThis = function() {
+        return this;
+    };
+    window.addResult({
+        type: "Script",
+        name: "nonStrictTopLevelFunctionThis",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: nonStrictTopLevelFunctionThis()
+    });// => global
+</script>
+<script>
+    "use strict";
+    window.addResult({
+        type: "Script",
+        name: "non-strict-this-in-global-env",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: this
+    });// => global
+</script>
+<script>
+    "use strict";
+    const strictTopLevelArrowFunctionThis = () => {
+        return this;
+    };
+    window.addResult({
+        type: "Script",
+        name: "strictTopLevelArrowFunctionThis",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: strictTopLevelArrowFunctionThis()
+    });
+</script>
+<script>
+    "use strict";
+    const strictTopLevelFunctionThis = function() {
+        return this;
+    };
+    window.addResult({
+        type: "Script",
+        name: "strictTopLevelFunctionThis",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: strictTopLevelFunctionThis()
+    });
+</script>
+<!-- Module -->
+<script type="module">
+    window.addResult({
+        type: "Module",
+        name: "non-strict-this-in-global-env",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: this
+    });// => global
+</script>
+<script type="module">
+    const strictTopLevelArrowFunctionThis = () => {
+        return this;
+    };
+    window.addResult({
+        type: "Module",
+        name: "strictTopLevelArrowFunctionThis",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: strictTopLevelArrowFunctionThis()
+    });
+</script>
+<script type="module">
+    "use strict";
+    const strictTopLevelFunctionThis = function() {
+        return this;
+    };
+    window.addResult({
+        type: "Module",
+        name: "strictTopLevelFunctionThis",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: strictTopLevelFunctionThis()
+    });
+</script>
+<!-- Output -->
+<script src="./vue@2.5.9_dist_vue.js"></script>
+<!-- component template -->
+<script type="text/x-template" id="grid-template">
+    <table>
+        <thead>
+        <tr>
+            <th v-for="key in columns"
+                @click="sortBy(key)"
+                :class="{ active: sortKey == key }">
+                {{ key | capitalize }}
+                <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+          </span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="entry in filteredData">
+            <td v-for="key in columns">
+                {{entry[key]}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</script>
+<!-- demo root element -->
+<div id="js-output">
+    <form id="search">
+        Search <input name="query" v-model="searchQuery">
+    </form>
+    <this-output
+            :data="gridData"
+            :columns="gridColumns"
+            :filter-key="searchQuery">
+    </this-output>
+</div>
+<script>
+    window.output();
+</script>
+</body>
+</html>
