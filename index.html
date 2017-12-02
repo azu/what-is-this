@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>What is `this`?</title>
-    <link rel="stylesheet" href="./table.css"/>
+    <link rel="stylesheet" href="./style.css"/>
     <script src="./table.js"></script>
 </head>
 <body>
+<h1>What is `this` value in JavaScript?</h1>
+<p>Comparison table of `this` value.</p>
 <script>
     // non strict
     window.addResult({
         type: "Script",
-        name: "non-strict-this-in-global-env",
+        code: "this;",
         isStrict: function() {
             return this;
         }() === undefined,
         thisValue: this
-    });// => global
+    });
 </script>
 <script>
     // non strict
@@ -25,12 +27,42 @@
     };
     window.addResult({
         type: "Script",
-        name: "non-strict-top-level-arrow-function-this",
+        code: "const fn = () => this;",
         isStrict: function() {
             return this;
         }() === undefined,
         thisValue: nonStrictTopLevelArrowFunctionThis()
-    });// => global
+    });
+</script>
+<script>
+    // non strict
+    function nonStrictTopLevelFunctionThis() {
+        return this;
+    }
+
+    window.addResult({
+        type: "Script",
+        code: "function fn(){ return this; }",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: nonStrictTopLevelFunctionThis()
+    });
+</script>
+<script>
+    // non strict
+    function nonStrictTopLevelFunctionThis() {
+        return this;
+    }
+
+    window.addResult({
+        type: "Script",
+        code: "const fn = function(){ return this; }",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: nonStrictTopLevelFunctionThis()
+    });
 </script>
 <script>
     // non strict
@@ -39,23 +71,23 @@
     };
     window.addResult({
         type: "Script",
-        name: "non-strict-top-level-function-this",
+        code: "const fn = function(){ return this; }",
         isStrict: function() {
             return this;
         }() === undefined,
         thisValue: nonStrictTopLevelFunctionThis()
-    });// => global
+    });
 </script>
 <script>
     "use strict";
     window.addResult({
         type: "Script",
-        name: "strict-this-in-global-env",
+        code: "this;",
         isStrict: function() {
             return this;
         }() === undefined,
         thisValue: this
-    });// => global
+    });
 </script>
 <script>
     "use strict";
@@ -64,11 +96,27 @@
     };
     window.addResult({
         type: "Script",
-        name: "strict-top-level-arrow-function-this",
+        code: "const fn = () => this;",
         isStrict: function() {
             return this;
         }() === undefined,
         thisValue: strictTopLevelArrowFunctionThis()
+    });
+</script>
+<script>
+    "use strict";
+
+    function strictTopLevelFunctionThis() {
+        return this;
+    }
+
+    window.addResult({
+        type: "Script",
+        code: "function fn(){ return this; }",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: strictTopLevelFunctionThis()
     });
 </script>
 <script>
@@ -78,7 +126,23 @@
     };
     window.addResult({
         type: "Script",
-        name: "strict-top-level-function-this",
+        code: "const fn = function(){ return this; }",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: strictTopLevelFunctionThis()
+    });
+</script>
+<script>
+    "use strict";
+
+    function strictTopLevelFunctionThis() {
+        return this;
+    }
+
+    window.addResult({
+        type: "Script",
+        code: "const fn = function(){ return this; }",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -89,7 +153,7 @@
 <script type="module">
     window.addResult({
         type: "Module",
-        name: "this-in-module-env",
+        code: "this;",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -102,11 +166,25 @@
     };
     window.addResult({
         type: "Module",
-        name: "top-level-arrow-function-this-in-module-env",
+        code: "const fn = () => this;",
         isStrict: function() {
             return this;
         }() === undefined,
         thisValue: strictTopLevelArrowFunctionThis()
+    });
+</script>
+<script type="module">
+    function strictTopLevelFunctionThis() {
+        return this;
+    }
+
+    window.addResult({
+        type: "Module",
+        code: "function fn(){ return this; }",
+        isStrict: function() {
+            return this;
+        }() === undefined,
+        thisValue: strictTopLevelFunctionThis()
     });
 </script>
 <script type="module">
@@ -116,7 +194,7 @@
     };
     window.addResult({
         type: "Module",
-        name: "top-level-function-this-in-module-env",
+        code: "const fn = function(){ return this; }",
         isStrict: function() {
             return this;
         }() === undefined,
@@ -162,5 +240,8 @@
 <script>
     window.output();
 </script>
+<a href="https://github.com/azu/what-is-this"><img style="position: absolute; top: 0; right: 0; border: 0;"
+                                                   src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+                                                   alt="Fork me on GitHub"></a>
 </body>
 </html>

@@ -1,33 +1,17 @@
 // MIT © 2017 azu
 "use strict";
-
-// util
-window.isStrictMode = () => {
-};
-window.isModule = () => {
-    const a = 1;
-    try {
-        a = 2;
-    } catch (e) {
-        return true;
-    }
-    return false;
-};
-
 // results
-
-const results = [];
-
+var results = [];
 window.addResult = ({
                         type,
                         isStrict,
-                        name,
+                        code,
                         thisValue
                     }) => {
     results.push({
         type,
         isStrict,
-        name,
+        code,
         thisValue: String(thisValue)
     });
 };
@@ -43,10 +27,10 @@ window.output = () => {
             filterKey: String
         },
         data: function() {
-            var sortOrders = {}
+            var sortOrders = {};
             this.columns.forEach(function(key) {
                 sortOrders[key] = 1
-            })
+            });
             return {
                 sortKey: '',
                 sortOrders: sortOrders
@@ -88,14 +72,14 @@ window.output = () => {
         }
     });
     // bootstrap the demo
-    const output = new Vue({
+    new Vue({
         el: '#js-output',
         data: {
             searchQuery: '',
             gridColumns: [
                 "type",
                 "isStrict",
-                "name",
+                "code",
                 "thisValue"
             ],
             gridData: results

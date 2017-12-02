@@ -2,15 +2,7 @@
 
 What value is `this` in Strict, Script, or Module?
 
-## Install
-
-Install with [npm](https://www.npmjs.com/):
-
-    npm install what-is-this
-
-## Usage
-
-- [ ] Write usage instructions
+Open <https://azu.github.io/what-is-this/>
 
 ## Changelog
 
