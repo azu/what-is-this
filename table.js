@@ -1,23 +1,15 @@
 // MIT © 2017 azu
 "use strict";
-// results
-var results = [];
-window.addResult = ({
-                        type,
-                        isStrict,
-                        code,
-                        thisValue
-                    }) => {
-    results.push({
-        type,
-        isStrict,
-        code,
-        thisValue: String(thisValue)
-    });
-};
-
-
-window.output = () => {
+/**
+ *
+ * @param {{
+        type:string,
+        isStrict:boolean,
+        code:string,
+        thisValue: *
+ * }[]} results
+ */
+window.outputResults = (results) => {
     // register the grid component
     Vue.component('this-output', {
         template: '#grid-template',
@@ -86,3 +78,39 @@ window.output = () => {
         }
     })
 };
+
+// main
+// type=module is executed after Script
+// buf, before script defer
+// see https://jakearchibald.com/2017/es-modules-in-browsers/
+(function() {
+    function stripIndent(str) {
+        const re = new RegExp(`^[ \\t]{${2}}`, 'gm');
+        return str.replace(re, '');
+    }
+
+    function stripEmptyLine(str) {
+        return str.replace(/(^[ \t]*\n)/gm, '');
+    }
+
+    function replaceConsoleLog(str) {
+        return str.replace("window.logThis", "console.log");
+    }
+
+    var scriptList = Array.prototype.slice.call(document.querySelectorAll("[data-this]"));
+    console.log(thisValueLogList.length);
+    var results = thisValueLogList.map(function(thisValue, index) {
+        var script = scriptList[index];
+        var code = replaceConsoleLog(stripEmptyLine(stripIndent(script.textContent)));
+        var type = script.getAttribute("type") === "module" ? "Module" : "Script";
+        var isStrict = type === "Module" ? true : code.indexOf(`"use strict";`) !== -1;
+        return {
+            type: type,
+            isStrict: isStrict,
+            code: code,
+            thisValue: thisValue
+        }
+    });
+    window.outputResults(results);
+    Prism.highlightAll();
+})();

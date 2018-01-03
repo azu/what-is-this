@@ -4,205 +4,91 @@
     <meta charset="UTF-8">
     <title>What is `this` value in JavaScript?</title>
     <link rel="stylesheet" href="./style.css"/>
-    <script src="./table.js"></script>
 </head>
 <body>
 <h1>What is `this` value in JavaScript?</h1>
 <p>Comparison table of `this` value. Show the result of your browser.</p>
 <script>
-    // non strict
-    window.addResult({
-        type: "Script",
-        code: "this;",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: this
-    });
+    window.thisValueLogList = [];
+    window.logThis = function(thisValue) {
+        window.thisValueLogList.push(thisValue !== undefined ? String(thisValue) : "undefined");
+    }
 </script>
-<script>
-    // non strict
+<script data-this>
+    window.logThis(this);
+</script>
+<script data-this>
     const nonStrictTopLevelArrowFunctionThis = () => {
-        return this;
+        window.logThis(this);
     };
-    window.addResult({
-        type: "Script",
-        code: "const fn = () => this;",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: nonStrictTopLevelArrowFunctionThis()
-    });
+    nonStrictTopLevelArrowFunctionThis();
 </script>
-<script>
-    // non strict
+<script data-this>
     function nonStrictTopLevelFunctionThis() {
-        return this;
+        window.logThis(this);
     }
 
-    window.addResult({
-        type: "Script",
-        code: "function fn(){ return this; }",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: nonStrictTopLevelFunctionThis()
-    });
+    nonStrictTopLevelFunctionThis();
 </script>
-<script>
-    // non strict
-    function nonStrictTopLevelFunctionThis() {
-        return this;
-    }
-
-    window.addResult({
-        type: "Script",
-        code: "const fn = function(){ return this; }",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: nonStrictTopLevelFunctionThis()
-    });
-</script>
-<script>
-    // non strict
-    const nonStrictTopLevelFunctionThis = function() {
-        return this;
+<script data-this>
+    const nonStrictTopLevelFunctionExpressionThis = function() {
+        window.logThis(this);
     };
-    window.addResult({
-        type: "Script",
-        code: "const fn = function(){ return this; }",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: nonStrictTopLevelFunctionThis()
-    });
+    nonStrictTopLevelFunctionExpressionThis();
 </script>
-<script>
+<script data-this>
     "use strict";
-    window.addResult({
-        type: "Script",
-        code: "this;",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: this
-    });
+    window.logThis(this);
 </script>
-<script>
+<script data-this>
     "use strict";
     const strictTopLevelArrowFunctionThis = () => {
-        return this;
+        window.logThis(this);
     };
-    window.addResult({
-        type: "Script",
-        code: "const fn = () => this;",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: strictTopLevelArrowFunctionThis()
-    });
+    strictTopLevelArrowFunctionThis();
 </script>
-<script>
+<script data-this>
     "use strict";
 
     function strictTopLevelFunctionThis() {
-        return this;
+        window.logThis(this);
     }
 
-    window.addResult({
-        type: "Script",
-        code: "function fn(){ return this; }",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: strictTopLevelFunctionThis()
-    });
+    strictTopLevelFunctionThis();
 </script>
-<script>
+<script data-this>
     "use strict";
-    const strictTopLevelFunctionThis = function() {
-        return this;
+    const strictTopLevelFunctionExpressionThis = function() {
+        window.logThis(this);
     };
-    window.addResult({
-        type: "Script",
-        code: "const fn = function(){ return this; }",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: strictTopLevelFunctionThis()
-    });
-</script>
-<script>
-    "use strict";
-
-    function strictTopLevelFunctionThis() {
-        return this;
-    }
-
-    window.addResult({
-        type: "Script",
-        code: "const fn = function(){ return this; }",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: strictTopLevelFunctionThis()
-    });
+    strictTopLevelFunctionExpressionThis();
 </script>
 <!-- Module -->
-<script type="module">
-    window.addResult({
-        type: "Module",
-        code: "this;",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: this
-    });// => global
+<script type="module" data-this>
+    window.logThis(this);
 </script>
-<script type="module">
+<script type="module" data-this>
     const strictTopLevelArrowFunctionThis = () => {
-        return this;
+        window.logThis(this);
     };
-    window.addResult({
-        type: "Module",
-        code: "const fn = () => this;",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: strictTopLevelArrowFunctionThis()
-    });
+
+    strictTopLevelArrowFunctionThis();
 </script>
-<script type="module">
-    function strictTopLevelFunctionThis() {
-        return this;
+<script type="module" data-this>
+    function strictTopLevelFunctionThisInModule() {
+        window.logThis(this);
     }
 
-    window.addResult({
-        type: "Module",
-        code: "function fn(){ return this; }",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: strictTopLevelFunctionThis()
-    });
+    strictTopLevelFunctionThisInModule();
 </script>
-<script type="module">
-    "use strict";
-    const strictTopLevelFunctionThis = function() {
-        return this;
+<script type="module" data-this>
+    const strictTopLevelFunctionExpressionThisInModule = function() {
+        window.logThis(this);
     };
-    window.addResult({
-        type: "Module",
-        code: "const fn = function(){ return this; }",
-        isStrict: function() {
-            return this;
-        }() === undefined,
-        thisValue: strictTopLevelFunctionThis()
-    });
+    strictTopLevelFunctionExpressionThisInModule();
 </script>
 <!-- Output -->
-<script src="./vue@2.5.9_dist_vue.js"></script>
+<script src="./vue_2.5.13_vue.js"></script>
 <!-- component template -->
 <script type="text/x-template" id="grid-template">
     <table>
@@ -220,7 +106,11 @@
         <tbody>
         <tr v-for="entry in filteredData">
             <td v-for="key in columns">
-                {{entry[key]}}
+                <pre v-if="key === 'code'"><code class="language-javascript">{{entry[key]}}</code></pre>
+                <span v-else>
+                    {{entry[key]}}
+                </span>
+
             </td>
         </tr>
         </tbody>
@@ -237,9 +127,11 @@
             :filter-key="searchQuery">
     </this-output>
 </div>
-<script>
-    window.output();
-</script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/themes/prism.min.css"
+      media="all"/>
+<script data-manual type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.9.0/prism.min.js"></script>
+<script async defer src="./table.js"></script>
 <a href="https://github.com/azu/what-is-this"><img style="position: absolute; top: 0; right: 0; border: 0;"
                                                    src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
                                                    alt="Fork me on GitHub"></a>
