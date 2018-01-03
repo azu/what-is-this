@@ -4,7 +4,10 @@ What value is `this` in Strict, Script, or Module?
 
 ## Comparison Table
 
-Open <https://azu.github.io/what-is-this/>
+Open following URL:
+
+- Function: <https://azu.github.io/what-is-this/>
+- Method: <https://azu.github.io/what-is-this/method.html>
 
 ## :memo: Specification
 
