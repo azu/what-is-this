@@ -9,6 +9,11 @@ Open following URL:
 - Function: <https://azu.github.io/what-is-this/>
 - Method: <https://azu.github.io/what-is-this/method.html>
 
+## :bug: Bug
+
+- V8
+    - [791334 - `this` in top level Arrow Function in Module Context should be `undefined` - chromium - Monorail](https://bugs.chromium.org/p/chromium/issues/detail?id=791334 "791334 - `this` in top level Arrow Function in Module Context should be `undefined` - chromium - Monorail")
+
 ## :memo: Specification
 
 - Set `[[ThisValue]]`
