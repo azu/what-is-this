@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>What is `this` value in JavaScript?</title>
+    <title>What is `this` value in JavaScript?(method version)</title>
     <link rel="stylesheet" href="./style.css"/>
 </head>
 <body>
-<h1>What is `this` value in JavaScript?</h1>
-<p>Comparison table of `this` value. Show the result of your browser.</p>
-<p>Method version: <a href="./method.html">What is `this` value in method</a></p>
+<h1>What is `this` value in JavaScript?(method version)</h1>
+<p>Comparison table of `this` value in method. Show the result of your browser.</p>
 <script>
     window.thisValueLogList = [];
     window.logThis = function(thisValue) {
@@ -16,91 +15,45 @@
     }
 </script>
 <script data-this>
-    window.logThis(this);
+    var obj1 = {
+        method: function() {
+            window.logThis(this);
+        }
+    };
+    obj1.method();
 </script>
 <script data-this>
-    const nonStrictTopLevelArrowFunctionThis = () => {
-        window.logThis(this);
+    var obj2 = {
+        method() {
+            window.logThis(this);
+        }
     };
-    nonStrictTopLevelArrowFunctionThis();
+    obj2.method();
 </script>
 <script data-this>
-    function nonStrictTopLevelFunctionThis() {
-        window.logThis(this);
-    }
-
-    nonStrictTopLevelFunctionThis();
+    var obj3 = {
+        method: () => {
+            window.logThis(this);
+        }
+    };
+    obj3.method();
 </script>
 <script data-this>
-    const nonStrictTopLevelFunctionExpressionThis = function() {
-        window.logThis(this);
+    var obj3 = {
+        * method() {
+            window.logThis(this);
+        }
     };
-    nonStrictTopLevelFunctionExpressionThis();
+    obj3.method().next();
 </script>
 <script data-this>
-    "use strict";
-    window.logThis(this);
-</script>
-<script data-this>
-    "use strict";
-    const strictTopLevelArrowFunctionThis = () => {
-        window.logThis(this);
+    var obj4 = {
+        async method() {
+            window.logThis(this);
+        }
     };
-    strictTopLevelArrowFunctionThis();
+    obj4.method();
 </script>
-<script data-this>
-    "use strict";
-
-    function strictTopLevelFunctionThis() {
-        window.logThis(this);
-    }
-
-    strictTopLevelFunctionThis();
-</script>
-<script data-this>
-    "use strict";
-    const strictTopLevelFunctionExpressionThis = function() {
-        window.logThis(this);
-    };
-    strictTopLevelFunctionExpressionThis();
-</script>
-<!-- Module -->
-<script type="module" data-this>
-    window.logThis(this);
-</script>
-<script type="module" data-this>
-    const strictTopLevelArrowFunctionThis = () => {
-        window.logThis(this);
-    };
-
-    strictTopLevelArrowFunctionThis();
-</script>
-<script type="module" data-this>
-    function strictTopLevelFunctionThisInModule() {
-        window.logThis(this);
-    }
-
-    strictTopLevelFunctionThisInModule();
-</script>
-<script type="module" data-this>
-    const strictTopLevelFunctionExpressionThisInModule = function() {
-        window.logThis(this);
-    };
-    strictTopLevelFunctionExpressionThisInModule();
-</script>
-<script type="module" data-this>
-    const generatorFunction = function* () {
-        window.logThis(this);
-    };
-    generatorFunction().next();
-</script>
-<script type="module" data-this>
-    const asyncFunction = async function() {
-        window.logThis(this);
-    };
-    asyncFunction();
-</script>
-<!-- Method -->
 <!-- Output -->
 <script src="./vue_2.5.13_vue.js"></script>
 <!-- component template -->
