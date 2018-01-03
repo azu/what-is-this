@@ -98,7 +98,6 @@ window.outputResults = (results) => {
     }
 
     var scriptList = Array.prototype.slice.call(document.querySelectorAll("[data-this]"));
-    console.log(thisValueLogList.length);
     var results = thisValueLogList.map(function(thisValue, index) {
         var script = scriptList[index];
         var code = replaceConsoleLog(stripEmptyLine(stripIndent(script.textContent)));
