@@ -38,6 +38,13 @@
     nonStrictTopLevelFunctionExpressionThis();
 </script>
 <script data-this>
+    const callableThisNonStrict = function() {
+        window.logThis(this);
+    };
+    callableThisNonStrict.call(undefined);
+</script>
+<!-- Strict mode-->
+<script data-this>
     "use strict";
     window.logThis(this);
 </script>
@@ -64,6 +71,13 @@
     };
     strictTopLevelFunctionExpressionThis();
 </script>
+<script data-this>
+    "use strict";
+    const callableThisStrict = function() {
+        window.logThis(this);
+    };
+    callableThisStrict.call(undefined);
+</script>
 <!-- Module -->
 <script type="module" data-this>
     window.logThis(this);
@@ -87,6 +101,12 @@
         window.logThis(this);
     };
     strictTopLevelFunctionExpressionThisInModule();
+</script>
+<script type="module" data-this>
+    const callableThisNonStrictInModule = function() {
+        window.logThis(this);
+    };
+    callableThisNonStrictInModule.call(undefined);
 </script>
 <script type="module" data-this>
     const generatorFunction = function* () {
