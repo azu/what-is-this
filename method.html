@@ -16,15 +16,15 @@
     }
 </script>
 <script data-this>
-    var obj1 = {
+    const obj1A = {
         method: function() {
             window.logThis(this);
         }
     };
-    obj1.method();
+    obj1A.method();
 </script>
 <script data-this>
-    var obj2 = {
+    const obj2 = {
         method() {
             window.logThis(this);
         }
@@ -32,28 +32,71 @@
     obj2.method();
 </script>
 <script data-this>
-    var obj3 = {
+    const obj3 = {
         method: () => {
             window.logThis(this);
         }
     };
     obj3.method();
 </script>
+
 <script data-this>
-    var obj3 = {
+    const obj4 = {
         * method() {
             window.logThis(this);
         }
     };
-    obj3.method().next();
+    obj4.method().next();
 </script>
+
 <script data-this>
-    var obj4 = {
+    const obj5 = {
         async method() {
             window.logThis(this);
         }
     };
-    obj4.method();
+    obj5.method();
+</script>
+<!-- Module -->
+<script data-this type="module">
+    const obj1 = {
+        method: function() {
+            window.logThis(this);
+        }
+    };
+    obj1.method();
+</script>
+<script data-this type="module">
+    const obj2 = {
+        method() {
+            window.logThis(this);
+        }
+    };
+    obj2.method();
+</script>
+<script data-this type="module">
+    const obj3 = {
+        method: () => {
+            window.logThis(this);
+        }
+    };
+    obj3.method();
+</script>
+<script data-this type="module">
+    const obj4 = {
+        * method() {
+            window.logThis(this);
+        }
+    };
+    obj4.method().next();
+</script>
+<script data-this type="module">
+    const obj5 = {
+        async method() {
+            window.logThis(this);
+        }
+    };
+    obj5.method();
 </script>
 <!-- Output -->
 <script src="./vue_2.5.13_vue.js"></script>
