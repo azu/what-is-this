@@ -83,7 +83,7 @@ window.outputResults = (results) => {
 // type=module is executed after Script
 // buf, before script defer
 // see https://jakearchibald.com/2017/es-modules-in-browsers/
-(function() {
+setTimeout(function() {
     function stripIndent(str) {
         const re = new RegExp(`^[ \\t]{${2}}`, 'gm');
         return str.replace(re, '');
@@ -112,4 +112,4 @@ window.outputResults = (results) => {
     });
     window.outputResults(results);
     Prism.highlightAll();
-})();
+}, 500);
